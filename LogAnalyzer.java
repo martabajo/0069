@@ -104,5 +104,19 @@ public class LogAnalyzer
         }
         return cont;
     }
-    
+
+    /**
+     * Añade un método denominado `quietestHour` a la clase `LogAnalyzer` que se pueda ejecutar después del método `analyzeHourlyData` y que 
+     * devuelva la hora a la que el servidor estuvo menos sobrecargado. Para testear este método asegúrate de que lo pruebas con un archivo 
+     * de log en el que ha habido accesos a todas las horas.
+     */
+    public int quietestHour()
+    {
+        int cont = 0;
+        for (int indice = 0; indice < hourCounts.length; indice = indice + 1){
+            if( hourCounts[indice] < hourCounts[cont]);
+            cont = indice;
+        }
+        return cont;
+    }
 }
