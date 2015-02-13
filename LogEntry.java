@@ -16,16 +16,16 @@ public class LogEntry implements Comparable<LogEntry>
     private int[] dataValues;
     // The equivalent Calendar object for the log time.
     private Calendar when;
-    
+
     // At which index in dataValues the different fields
     // from a log line are stored.
     private static final int YEAR = 0, MONTH = 1, DAY = 2,
-                             HOUR = 3, MINUTE = 4;
+    HOUR = 3, MINUTE = 4;
     // The number of fields. If more fields are added, e.g. for
     // seconds or a status code, then this value must be increased
     // to match.
     private static final int NUMBER_OF_FIELDS = 5;
-                      
+
     /**
      * Decompose a log line so that the individual fields
      * are available.
@@ -42,7 +42,7 @@ public class LogEntry implements Comparable<LogEntry>
         tokenizer.tokenize(logline,dataValues);
         setWhen();
     }
-    
+
     /**
      * Create a LogEntry from the individual components.
      * @param year The year
@@ -62,7 +62,7 @@ public class LogEntry implements Comparable<LogEntry>
         dataValues[MINUTE] = minute;
         setWhen();
     }
-    
+
     /**
      * Return the hour.
      * @return The hour field from the log line.
@@ -80,7 +80,31 @@ public class LogEntry implements Comparable<LogEntry>
     {
         return dataValues[MINUTE];
     }
-    
+
+    /**
+     * Return day
+     */
+    public int getDay()
+    {
+        return dataValues[DAY];
+    }
+
+    /**
+     * Return month.
+     */
+    public int getMonth()
+    {
+        return dataValues[MONTH];
+    }
+
+    /**
+     * Return Year
+     */
+    public int getYear()
+    {
+        return dataValues[YEAR];
+    }
+
     /**
      * Create a string representation of the data.
      * This is not necessarily identical with the
@@ -91,7 +115,7 @@ public class LogEntry implements Comparable<LogEntry>
     {
         StringBuffer buffer = new StringBuffer();
         for(int value : dataValues) {
-           // Prefix a leading zero on single digit numbers.
+            // Prefix a leading zero on single digit numbers.
             if(value < 10) {
                 buffer.append('0');
             }
@@ -101,7 +125,7 @@ public class LogEntry implements Comparable<LogEntry>
         // Drop any trailing space.
         return buffer.toString().trim();
     }
-    
+
     /**
      * Compare the date/time combination of this log entry
      * with another.
@@ -115,7 +139,7 @@ public class LogEntry implements Comparable<LogEntry>
         // Use the equivalent Calendars comparison method.
         return when.compareTo(otherEntry.getWhen());
     }
-    
+
     /**
      * Return the Calendar object representing this event.
      * @return The Calendar for this event.
@@ -133,8 +157,8 @@ public class LogEntry implements Comparable<LogEntry>
         when = Calendar.getInstance();
         // Adjust from 1-based month and day to 0-based.
         when.set(dataValues[YEAR],
-                 dataValues[MONTH] - 1, dataValues[DAY] - 1,
-                 dataValues[HOUR], dataValues[MINUTE]);
+            dataValues[MONTH] - 1, dataValues[DAY] - 1,
+            dataValues[HOUR], dataValues[MINUTE]);
     }
-    
+
 }
