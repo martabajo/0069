@@ -63,12 +63,12 @@ public class LogAnalyzer
     {
         reader.printData();
     }
-    
+
     /**
      * añade a la clase `LogAnalyzer`  un nuevo constructor. Este constructor tendrá un parámetro consistente en el nombre del archivo de log a analizar. 
      * Usa la clase `LogFileCreator` para crear tu propio archivo de log y comprueba que puedes analizarlo con la clase `LogAnalyzer`.
      */
-     public LogAnalyzer(String nombre)
+    public LogAnalyzer(String nombre)
     { 
         // Create the array object to hold the hourly
         // access counts.
@@ -76,7 +76,7 @@ public class LogAnalyzer
         // Create the reader to obtain the data.
         reader = new LogfileReader(nombre);
     }
-    
+
     /**
      * Crea un método llamado `numberOfAccesses` que se pueda ejecutar después del método `analyzeHourlyData` y que devuelva el número 
      * total de accesos al servidor web registrados en el archivo de log.
@@ -85,9 +85,24 @@ public class LogAnalyzer
     {
         int cont = 0;
         for (int horas : hourCounts){
-        cont = cont + horas;
+            cont = cont + horas;
         }
         return cont;
-        
+
     }
+
+    /**
+     * Añade un método denominado `busiestHour` a la clase `LogAnalyzer` que se pueda ejecutar después del método `analyzeHourlyData` y que 
+     * devuelva en qué hora el servidor tuvo que responder a más peticiones. 
+     */
+    public int busiestHour()
+    {
+        int cont = 0;
+        for (int indice = 0; indice < hourCounts.length; indice = indice + 1){
+            if( hourCounts[indice]< hourCounts[cont]);
+            cont = indice;
+        }
+        return cont;
+    }
+    
 }
