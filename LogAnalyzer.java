@@ -99,7 +99,7 @@ public class LogAnalyzer
     {
         int cont = 0;
         for (int indice = 0; indice < hourCounts.length; indice = indice + 1){
-            if( hourCounts[indice]< hourCounts[cont]);
+            if( hourCounts[indice] > hourCounts[cont]);
             cont = indice;
         }
         return cont;
