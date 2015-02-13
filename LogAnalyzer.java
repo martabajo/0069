@@ -76,4 +76,18 @@ public class LogAnalyzer
         // Create the reader to obtain the data.
         reader = new LogfileReader(nombre);
     }
+    
+    /**
+     * Crea un método llamado `numberOfAccesses` que se pueda ejecutar después del método `analyzeHourlyData` y que devuelva el número 
+     * total de accesos al servidor web registrados en el archivo de log.
+     */
+    public int  numberOfAccesses()
+    {
+        int cont = 0;
+        for (int horas : hourCounts){
+        cont = cont + horas;
+        }
+        return cont;
+        
+    }
 }
