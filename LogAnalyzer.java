@@ -119,4 +119,19 @@ public class LogAnalyzer
         }
         return cont;
     }
+    
+    /**
+     *  Añade un método que se pueda ejecutar después del método `analyzeHourlyData` y que calcule el período de dos horas consecutivas con 
+     *  más carga del día y devuelva un entero con la primera hora de dicho periodo.
+     */
+    
+    public int dosHoras()
+    {
+        int cont = 0;
+        for (int indice = 0; indice < hourCounts.length - 1; indice = indice + 1){
+            if( (hourCounts[indice] + hourCounts[cont + 1]) > ( hourCounts[indice] + hourCounts[cont + 1]));
+            cont = indice;
+        }
+        return cont;
+    }
 }
