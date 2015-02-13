@@ -119,12 +119,12 @@ public class LogAnalyzer
         }
         return cont;
     }
-    
+
     /**
      *  Añade un método que se pueda ejecutar después del método `analyzeHourlyData` y que calcule el período de dos horas consecutivas con 
      *  más carga del día y devuelva un entero con la primera hora de dicho periodo.
      */
-    
+
     public int dosHoras()
     {
         int cont = 0;
@@ -133,5 +133,23 @@ public class LogAnalyzer
             cont = indice;
         }
         return cont;
+    }
+
+    /** 
+     * Analyze the hourly accesses in the given date
+     *
+     * @param day     The given day
+     * @param month The given month
+     * @param year  The given year
+     */
+
+    public void analizar(int day, int month, int year)
+    {
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            if (day == entry.getDay() && month == entry.getMonth() && year == entry.getYear()){
+            int hour = entry.getHour();
+            hourCounts[hour]++;}
+        }
     }
 }
